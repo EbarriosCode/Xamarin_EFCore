@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModel="clr-namespace:XamEFCore.ViewModels"
+    x:Class="XamEFCore.Views.IngenioSINSPage"
+    Title="Service">
+
+    <ContentPage.BindingContext>
+        <ViewModel:IngenioSINSViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout
+        Margin="20,20,20,20">
+
+        <Button
+            Text="Sync Ingenios"
+            Command="{Binding SyncIngeniosCommand}"/>
+
+        <ActivityIndicator
+            IsRunning="{Binding ProccesSync}"/>
+
+        <ListView
+            ItemsSource="{Binding Ingenios}"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            RefreshCommand="{Binding RefreshCommand}"
+            HasUnevenRows="True"
+            SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout
+                            Orientation="Vertical">
+                            <Label 
+                                Text="{Binding Nombre}"
+                                FontAttributes="Bold"/>
+                            <Label 
+                                Text="{Binding IngenioSINSID}"
+                                FontAttributes="Italic"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button
+            Text="Delete Ingenios"
+            Command="{Binding DeleteIngeniosAllCommand}"/>
+    </StackLayout>
+
+</ContentPage>
