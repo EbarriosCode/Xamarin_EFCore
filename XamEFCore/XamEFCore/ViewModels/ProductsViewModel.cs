@@ -52,6 +52,15 @@ namespace XamEFCore.ViewModels
             set { SetValue(ref this.isRefreshing, value); }
         }
 
+        private string respCreated;
+
+        public string RespCreated
+        {
+            get { return respCreated; }
+            set { SetValue(ref this.respCreated, value); }
+        }
+
+
         // Constructors
         public ProductsViewModel()
         {            
@@ -94,7 +103,18 @@ namespace XamEFCore.ViewModels
                 Price = this.Price
             };
 
-            repositoryGeneric.Create(product);
+            if (repositoryGeneric.Create(product))
+            {
+                this.RespCreated = $"Producto Creado Exitosamente";
+
+                this.Title = string.Empty;
+                this.Price = 0;
+            }
+
+            else
+            {
+                this.RespCreated = $"Error al Crear el Producto en la Base de Datos";
+            }
         }       
     }
 }

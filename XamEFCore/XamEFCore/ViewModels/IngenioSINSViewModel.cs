@@ -35,7 +35,6 @@ namespace XamEFCore.ViewModels
             get { return ingenios; }
             set { SetValue(ref ingenios, value); }
         }
-
        
         public string Nombre
         {

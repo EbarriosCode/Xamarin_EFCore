@@ -14,12 +14,19 @@
         <StackLayout
             Margin="20,20,20,20">
             <Entry Text="{Binding Title}"/>
-            <Entry Text="{Binding Price}"/>
+            <Entry 
+                Text="{Binding Price}"
+                Keyboard="Numeric"/>
 
             <Button 
                 Text="Create"
                 Command="{Binding CreateCommand}"/>
-            
+
+            <Label
+                Text="{Binding RespCreated}"
+                HorizontalOptions="CenterAndExpand"
+                FontAttributes="Italic"
+                FontSize="Medium"/>
         </StackLayout>
     </ContentPage.Content>
     
